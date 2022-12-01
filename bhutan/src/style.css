@@ -1,0 +1,70 @@
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-toggler{
+    border:none;
+}
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(74,184,10, 1.0)' stroke-width='5' stroke-linecap='round' stroke-miterlimit='10' d='M8 8h24M4 16h24M8 25h25'/%3E%3C/svg%3E");
+}
+
+.active{
+    color:#4AB80A !important;
+}
+.slide-img{
+    height:70vh;
+}
+/* For Desktop View */
+@media screen and (min-width: 1024px) {
+    .slide-img{
+        height:75vh;
+    }
+}
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    .slide-img{
+        height:75vh;
+    }
+}
+
+/* For Mobile Phones Portrait or Landscape View */
+@media screen and (max-device-width: 640px) {
+    .slide-img{
+        height:200px;
+    }
+}
+
+.carousel-indicators > button{
+    width:12px !important;
+    height:12px !important;
+    border-radius: 100% !important;
+}
+
+.resultActive{
+    border:2px solid #4AB80A !important;
+    box-shadow: 0px 2px 3px #aaa !important;
+    color:#4AB80A !important;
+    background-color: #fff;
+    margin:10px;
+    height:50px;
+    border-radius: 10px;
+    font-size:20px;
+    font-weight: 600;
+}
+
+.result{
+    border:none;
+    box-shadow: 0px 2px 3px #aaa;
+    color:#444;
+    background-color: #fff;
+    margin:10px;
+    height:50px;
+    border-radius: 10px;
+    font-size:20px;
+    font-weight: 600;
+}
