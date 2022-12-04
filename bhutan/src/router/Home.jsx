@@ -1,13 +1,16 @@
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Container from 'react-bootstrap/Container';
+import {Link} from "react-router-dom";
 import Logo from "./assets/logo.png"
-import Result from "./Result";
+import Slider from "./comp/Slider";
+import Intro from "./comp/Intro";
+import Result from "./comp/Result";
 import AOS from "aos";
 import { useEffect } from 'react';
 import "aos/dist/aos.css";
 
-function App() {
+function Home() {
   useEffect(() => {
     AOS.init();
     AOS.refresh();
@@ -22,15 +25,17 @@ function App() {
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="ms-auto" style={{textAlign:"center"}}>
-              <Nav.Link href="/" className="mt-2 mb-2" style={{fontSize:"22px",fontWeight:"600"}}>Home</Nav.Link>
-              <Nav.Link href="/result.html" className="mt-2 mb-2 active" style={{fontSize:"22px",fontWeight:"600"}}>Results</Nav.Link>
+              <Link to="/" className="mt-2 mb-2 p-2 active" style={{fontSize:"22px",fontWeight:"600",textDecoration:"none"}}>Home</Link>
+              <Link to="/results" className="mt-2 p-2 mb-2" style={{color:"#999",fontSize:"22px",fontWeight:"600",textDecoration:"none"}}>Results</Link>
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
-      <h4 className="mt-4" id="result" style={{textAlign:"center",fontWeight:"700",color:"#666666",textShadow:"0px 1px 2px #000",fontSize:"32px"}}>Result</h4>
+      <Slider />
+      <Intro />
+      <h4 id="result" style={{textAlign:"center",fontWeight:"700",color:"#666666",textShadow:"0px 1px 2px #000",fontSize:"32px"}}>Result</h4>
       <Result />
-      <div className="mt-5" style={{textAlign:"center",backgroundColor:"#eee",padding:"10px",color:"#444"}}>
+      <div className="mt-3" style={{textAlign:"center",backgroundColor:"#eee",padding:"10px",color:"#444"}}>
         <span>
           Copyright © <a href="/admin">Bhutan Docoma</a> {(new Date().getFullYear())}. All rights reserved.
         </span>
@@ -39,4 +44,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

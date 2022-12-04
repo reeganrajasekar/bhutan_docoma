@@ -55,7 +55,7 @@
                                 ?>
                                     <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mb-2 mt-2">
                                         <div style="border:1px solid #f0f0f0;border-radius:10px;background:#f9f9f9;padding:10px">
-                                            <h4 style="text-align:center;font-weight:900 !important;font-size:22px;color:#666"><?php echo($fin["place"]) ?> p.m</h4>
+                                            <h4 style="text-align:center;font-weight:900 !important;font-size:22px;color:#666"><?php echo($fin["place"]) ?> o'clock Result</h4>
                                             <hr>
                                             <p style="color:#4AB80A;padding-left:20px">1st Prize : <span style="color:#333"><?php echo($fin["code1"]) ?></span></p>
                                             <p style="color:#4AB80A;padding-left:20px">2nd Prize : <span style="color:#333"><?php echo($fin["code2"]) ?></span></p>
@@ -123,9 +123,9 @@
                     <label for="time" class="form-label">Time <span style="color:red">*</span>:</label>
                     <select required class="form-select" id="time" name="time">
                         <option selected>select time</option>
-                        <option value="12">12:00 pm</option>
-                        <option value="06">06:00 pm</option>
-                        <option value="09">09:00 pm</option>
+                        <option value="9">09:00 am</option>
+                        <option value="1">01:00 pm</option>
+                        <option value="8">08:00 pm</option>
                     </select>
                 </div>
 

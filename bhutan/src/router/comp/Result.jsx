@@ -3,7 +3,7 @@ import { useState,useEffect } from 'react';
 function Got(props){
 
     return(
-        <div className="row mt-4 mb-3">
+        <div className="row">
             <div className="col-sm-12 col-md-6 col-lg-6 col-xl-6 mt-2" data-aos={"zoom-in"}>
                 <div className="card" style={{borderRadius:"10px",border:"1px solid #4AB80A",boxShadow:"1px 1px 3px #aaa"}}>
                     <div style={{padding:"10px"}} className="row">
@@ -97,23 +97,24 @@ function Result(){
 
             if (dd < 10) dd = '0' + dd;
             if (mm < 10) mm = '0' + mm;
-            setToday(yyyy + '-' + mm + '-' + dd)
+
+            setToday(dd + '-' + mm + '-' + yyyy)
             fetch('/api?date='+yyyy + '-' + mm + '-' + dd)
             .then((response) => response.json())
             .then((data) => {
                 if(data[0]){
                     setCode1("Result Not Published !")
                     data.map((i)=>{
-                        if(i.place == "12"){
+                        if(i.place == "9"){
                             setTw(i)
                             setCode1(i.code1)
                             setCode2(i.code2)
                             setCode3(i.code3)
                             setCode4(i.code4)
                             setCode5(i.code5)
-                        }else if(i.place=="6"){
+                        }else if(i.place=="1"){
                             setSix(i)
-                        }else if(i.place=="9"){
+                        }else if(i.place=="8"){
                             setNine(i)
                         }else{
                             setCode1("Result Not Published !")
@@ -143,7 +144,6 @@ function Result(){
             setCode5(tw.code5)
         }else{
             setCode1("Result Not Published !")
-            setTw(undefined)
         }
     }
 
@@ -159,7 +159,6 @@ function Result(){
             setCode5(six.code5)
         }else{
             setCode1("Result Not Published !")
-            setSix(undefined)
         }
     }
 
@@ -175,66 +174,30 @@ function Result(){
             setCode5(nine.code5)
         }else{
             setCode1("Result Not Published !")
-            setNine(undefined)
         }
-    }
-
-    function handleSearch(i){
-        setSix(undefined)
-        setNine(undefined)
-        setTw(undefined)
-        document.getElementById('loader').style.display='block'
-        fetch('/api?date='+i)
-        .then((response) => response.json())
-        .then((data) => {
-            if(data[0]){
-                data.map((i)=>{
-                    if(i.place == "12"){
-                        setTw(i)
-                        setCode1(i.code1)
-                        setCode2(i.code2)
-                        setCode3(i.code3)
-                        setCode4(i.code4)
-                        setCode5(i.code5)
-                    }else if(i.place=="6"){
-                        setSix(i)
-                    }else if(i.place=="9"){
-                        setNine(i)
-                    }else{
-                        setCode1("Result Not Published !")
-                    }
-                })
-            }else{
-                setCode1("Result Not Published !")
-            }
-            document.getElementById('loader').style.display='none'
-        })
-        .catch((error) => {
-            console.error(error);
-        });
     }
 
     return(
         <>
-            <h4 className="mt-5 mb-5 container" style={{textAlign:"center !important",fontWeight:"700 !important",color:"#4AB80A !important",fontSize:"22px !important"}}>
-                <span style={{color:"#4AB80A",fontWeight:"700 !important"}}>Date :&ensp;</span>
-                <input type="date" style={{height:"50px",padding:"10px",border:"1px solid #4AB80A",borderRadius:"10px",color:"#555"}} defaultValue={today} onChange={(i)=>{handleSearch(i.target.value)}}/>
-            </h4>
-            <div className="container mt-2 mb-5" style={{position:"relative"}}>
+            <h4 className="mt-4 mb-3" style={{textDecoration:"underline",textAlign:"center",fontWeight:"700",color:"#4AB80A",textShadow:"0px 1px 2px #4AB80A",fontSize:"22px"}}>Today - {today}</h4>
+            <div className="container mt-2 mb-2" style={{position:"relative"}}>
                 <div id="loader" style={{position:"absolute",width:"100%",height:"100%",backgroundColor:"#ffffffcc",zIndex:"10000",top:"0px",display:"block"}}>
                     <div className="spinner-border" style={{color:"#4AB80A",position:"absolute",top:"50%",left:"47%"}} role="status">
                         <span className="sr-only"></span>
                     </div>
                 </div>
-                <div className="container pt-3 pb-2" style={{backgroundColor:"#f5f5f5",borderRadius:"15px",boxShadow:"1px 2px 3px #aaa"}}>
+                <div className="container pt-3 pb-3" style={{backgroundColor:"#f5f5f5",borderRadius:"15px",boxShadow:"1px 2px 3px #aaa"}}>
                     <div style={{display:"flex",flexDirection:"row",justifyContent:"space-around"}}>
-                        <button className="result resultActive w-100" id="btn12" onClick={()=>click12()}>12 pm</button>
-                        <button className="result w-100" id="btn6" onClick={()=>click6()}>6 pm</button>
-                        <button className="result w-100" id="btn9" onClick={()=>click9()}>9 pm</button>
+                        <button className="result resultActive w-100" id="btn12" onClick={()=>click12()}>9 am</button>
+                        <button className="result w-100" id="btn6" onClick={()=>click6()}>1 pm</button>
+                        <button className="result w-100" id="btn9" onClick={()=>click9()}>8 pm</button>
                     </div>
                     <hr />
                     <div className="container" style={{transition: "all 0.2s ease-out",minHeight:"230px"}}>
                         {code1=="Result Not Published !"?<h4 className='pt-2 pb-2' style={{color:"#aaa",textAlign:"center"}}>Result Not Published !</h4>:<Got code1={code1} code2={code2} code3={code3} code4={code4} code5={code5}/>}
+                    </div>
+                    <div className="mt-2" style={{display:"flex",justifyContent:"flex-end"}}>
+                        <a className="btn btn-secondary" style={{backgroundColor:"#aaa",border:"none"}} href="/result.html">Past Results</a>
                     </div>
                 </div>
             </div>
